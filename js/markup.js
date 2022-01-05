@@ -44,6 +44,7 @@ const createMarkup = () => {
   const tdTotatlCostValue = createElem({
     nodeType: "td",
     className: "tdTotatlCost",
+    attribute: [{ name: "id", value: "totalCost" }],
   });
 
   trHeading.append(thName);

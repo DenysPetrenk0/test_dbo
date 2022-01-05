@@ -3,6 +3,7 @@
 const createTd = (name) => {
   const tr = createElem({
     nodeType: "tr",
+    attribute: [{ name: "id", value: name }],
   });
   const tdName = createElem({
     nodeType: "td",
@@ -30,7 +31,7 @@ const createTd = (name) => {
   });
   const tdCost = createElem({
     nodeType: "td",
-    attribute: [{ name: "id", value: "totalCost" }],
+    attribute: [{ name: "id", value: "totalCost" + name }],
   });
 
   tdAmount.append(tdAmountInput);

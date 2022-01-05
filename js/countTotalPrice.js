@@ -1,9 +1,9 @@
 /** @format */
+let result = null;
+let amount = null;
+let price = null;
 
 const countTotalPrice = (event) => {
-  let result = 0;
-  let amount = 0;
-  let price = 0;
   if (event.target.id === "amount") {
     amount = Number(event.target.value);
   }
@@ -11,9 +11,33 @@ const countTotalPrice = (event) => {
     price = Number(event.target.value);
   }
   result = amount * price;
+  if (result) {
+    document.getElementById("totalCost" + event.currentTarget.id).innerHTML =
+      result;
+    totalCost();
+  }
+};
+
+const totalCost = () => {
+  let result = 0;
+  const redTotalCost = document.getElementById(
+    "totalCostКрасный носок"
+  ).textContent;
+  const blueTotalCost = document.getElementById(
+    "totalCostСиний носок"
+  ).textContent;
+  const colorlessTotalCost = document.getElementById(
+    "totalCostБесцветный носок"
+  ).textContent;
+  result =
+    Number(redTotalCost) + Number(blueTotalCost) + Number(colorlessTotalCost);
   document.getElementById("totalCost").innerHTML = result;
 };
 
-const tbody = document.getElementsByTagName("tbody");
+const redTr = document.getElementById("Красный носок");
+const blueTr = document.getElementById("Синий носок");
+const colorlessTr = document.getElementById("Бесцветный носок");
 
-tbody[0].addEventListener("change", countTotalPrice);
+redTr.addEventListener("change", countTotalPrice);
+blueTr.addEventListener("change", countTotalPrice);
+colorlessTr.addEventListener("change", countTotalPrice);
