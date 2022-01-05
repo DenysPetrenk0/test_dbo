@@ -1,10 +1,19 @@
 /** @format */
-const refs = {
-  tbody: document.getElementsByTagName("tbody"),
-  amount: document.getElementById("amount"),
-  price: document.getElementById("price"),
+
+const countTotalPrice = (event) => {
+  let result = 0;
+  let amount = 0;
+  let price = 0;
+  if (event.target.id === "amount") {
+    amount = Number(event.target.value);
+  }
+  if (event.target.id === "price") {
+    price = Number(event.target.value);
+  }
+  result = amount * price;
+  document.getElementById("totalCost").innerHTML = result;
 };
 
-const countTotalPrice = (event) => {};
+const tbody = document.getElementsByTagName("tbody");
 
-refs.tbody[0].addEventListener("input", countTotalPrice);
+tbody[0].addEventListener("change", countTotalPrice);
