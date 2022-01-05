@@ -18,3 +18,5 @@ const createElem = ({
 
   return elem;
 };
+
+export default createElem;

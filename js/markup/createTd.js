@@ -1,5 +1,7 @@
 /** @format */
 
+import createElem from "./createElem.js";
+
 const createTd = (name) => {
   const tr = createElem({
     nodeType: "tr",
@@ -44,3 +46,5 @@ const createTd = (name) => {
 
   return tr;
 };
+
+export default createTd;

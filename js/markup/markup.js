@@ -1,5 +1,8 @@
 /** @format */
 
+import createElem from "./createElem.js";
+import createTd from "./createTd.js";
+
 const createMarkup = () => {
   const table = createElem({
     nodeType: "table",
@@ -27,7 +30,11 @@ const createMarkup = () => {
   });
   const thTotalCost = createElem({
     nodeType: "th",
+  });
+  const pTotalCost = createElem({
+    nodeType: "p",
     text: "Общая стоимость",
+    className: "td_total_price",
   });
   const trFirst = createTd("Красный носок");
   const trSecond = createTd("Синий носок");
@@ -50,6 +57,7 @@ const createMarkup = () => {
   trHeading.append(thName);
   trHeading.append(thAmount);
   trHeading.append(thPrice);
+  thTotalCost.append(pTotalCost);
   trHeading.append(thTotalCost);
   thead.append(trHeading);
   trFourth.append(tdTotatlCost);
@@ -66,9 +74,4 @@ const createMarkup = () => {
   return table;
 };
 
-const render = () => {
-  const root = document.getElementById("root");
-  root.insertAdjacentElement("beforeend", createMarkup());
-};
-
-render();
+export default createMarkup;

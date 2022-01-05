@@ -24,3 +24,7 @@ tr:hover {
 .tdTotatlCost {
   color: red;
 }
+
+.td_total_price:hover {
+  border-bottom: 1px solid #fff;
+}

@@ -1,43 +1,33 @@
 /** @format */
-let result = null;
-let amount = null;
-let price = null;
 
-const countTotalPrice = (event) => {
-  if (event.target.id === "amount") {
-    amount = Number(event.target.value);
+import totalCost from "./totalCost.js";
+
+export default class CountTotalPrice {
+  result = null;
+  amount = null;
+  price = null;
+
+  constructor(id) {
+    this.id = id;
   }
-  if (event.target.id === "price") {
-    price = Number(event.target.value);
+
+  getElem() {
+    const tr = document.getElementById(this.id);
+    tr.addEventListener("change", this.countTotalPrice);
   }
-  result = amount * price;
-  if (result) {
-    document.getElementById("totalCost" + event.currentTarget.id).innerHTML =
-      result;
-    totalCost();
-  }
-};
 
-const totalCost = () => {
-  let result = 0;
-  const redTotalCost = document.getElementById(
-    "totalCostКрасный носок"
-  ).textContent;
-  const blueTotalCost = document.getElementById(
-    "totalCostСиний носок"
-  ).textContent;
-  const colorlessTotalCost = document.getElementById(
-    "totalCostБесцветный носок"
-  ).textContent;
-  result =
-    Number(redTotalCost) + Number(blueTotalCost) + Number(colorlessTotalCost);
-  document.getElementById("totalCost").innerHTML = result;
-};
-
-const redTr = document.getElementById("Красный носок");
-const blueTr = document.getElementById("Синий носок");
-const colorlessTr = document.getElementById("Бесцветный носок");
-
-redTr.addEventListener("change", countTotalPrice);
-blueTr.addEventListener("change", countTotalPrice);
-colorlessTr.addEventListener("change", countTotalPrice);
+  countTotalPrice = (event) => {
+    if (event.target.id === "amount") {
+      this.amount = Number(event.target.value);
+    }
+    if (event.target.id === "price") {
+      this.price = Number(event.target.value);
+    }
+    this.result = this.amount * this.price;
+    if (this.result) {
+      document.getElementById("totalCost" + event.currentTarget.id).innerHTML =
+        this.result;
+      totalCost("totalCost" + event.currentTarget.id);
+    }
+  };
+}
